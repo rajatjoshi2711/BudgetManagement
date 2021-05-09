@@ -1,0 +1,5 @@
+
+UserCreateAuth
+
+42j9bqu9hitotinvd8b26a0pcl     -app client id
+1m875dovla5nfce8811kijfvafv80rmosptlj856ii3l893ivc0l    -app client secret 

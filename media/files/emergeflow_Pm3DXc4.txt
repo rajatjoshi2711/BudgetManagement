@@ -1,0 +1,106 @@
+Sales 
+Tender ID (for user to enter eg. OPxxx), 
+Date/Time, 
+EMD Payment option (req to finance/self-pay), 
+Tender fees Payment option (req to finance/self-pay), 
+Payment mode (Cash, Credit/Debit card, DD, Cheque, NEFT/RTGS, UPI), 
+Payment details (Cash authorised person/ card details/ DD name/ Cheques name, Account no/UPI ID), 
+EMD payment due date, 
+Tender fee due date, 
+attachment, 
+Comments
+
+Sales
+Update status - Tender awarded or not
+
+Sales
+Org specific job no
+
+Sales
+BG amount, 
+currency, 
+expiry date (or validitiy date), 
+claim period, 
+beneficiary name, 
+beneficiary address, 
+purpose (performace, warranty, advance, other), 
+attachment, 
+comment
+
+Sales
+SO ID, Date/Time, 
+Consignee name, 
+Consignee address, 
+billing person name, 
+billing person address, 
+value without GST, 
+GST %, 
+GST amount, 
+total, 
+completion date
+
+Management
+Budget includes GST or not. Excel to be received
+
+Finance
+Send scanned copy of BG to Sales
+Finance
+Update status - EMD refund received or not
+
+Finance
+Party name, 
+amount, 
+Transaction reference number, 
+Attachment, 
+Comments
+
+Finance
+vendor name, 
+amount, 
+request date, 
+payment expected date
+
+Finance
+is applicable or not, 
+section, 
+rate, 
+TDS amount, 
+net payable amount
+
+Finance
+CSV files to be received
+
+Purchase
+Comments, 
+attachment (e.g. design)
+
+Purchase
+PO number, 
+date/time, 
+Job number, 
+item name/id, 
+vendor name, 
+available budget (read only), 
+select{item, quantity}, 
+payment terms, 
+terms and conditions (select from choices), 
+
+Purchase
+Is PO issued, 
+PO number (dropdown of open PO), 
+vendor name (populated), 
+invoice number, 
+invoice date, 
+inventory particulars (items, quantity, rate, unit, item price, IGST rate, IGST amount, CGST rate, CGST amount, SGST rate, SGST amount), 
+subtotal, 
+Packing charges, 
+freight charges, 
+insurance charges, 
+TCS amount, 
+grand total, 
+other remarks, 
+terms and conditions, 
+expected payment date
+
+
+
