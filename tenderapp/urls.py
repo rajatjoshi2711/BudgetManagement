@@ -65,5 +65,7 @@ urlpatterns = [
     path('view_single_advance/<int:id>/', views.view_single_advance, name='view_single_advance'),
     path('pay/<int:id>/', views.pay, name='pay'),
     path('process/<int:id>/', views.process, name='process'),
+    path("upload_rml/", views.upload_rml, name="upload_rml"),
+    path("view_rml/", views.view_rml, name="view_rml"),
 ]
 
