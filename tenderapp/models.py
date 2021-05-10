@@ -114,11 +114,16 @@ class Rml_model(models.Model):
         ]
 
     project_no = models.ForeignKey(Project_model, on_delete=models.CASCADE)
-    rml_no = models.IntegerField(default=0,null=False)
-    description = models.CharField(max_length=100, null=False)
+    rml_no = models.IntegerField(null=False)
+    specification = models.CharField(max_length=100, null=False)
+    description = models.CharField(max_length=100, null=True)
+    quantity = models.IntegerField(null=False)
+    unit = models.CharField(max_length=20, null=False)
+    #unit_price = models.IntegerField(null=True,blank=True)
     allocate = models.IntegerField(default=0)
     utilized = models.IntegerField(default=0)
     available = models.IntegerField(default=models.F('allocate'))
+    attachment = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.project_no)

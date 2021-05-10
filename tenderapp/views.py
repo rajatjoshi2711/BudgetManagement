@@ -14,7 +14,12 @@ from django.shortcuts import render, redirect
 from django.shortcuts import render, redirect,get_object_or_404
 from django.views import generic
 from .models import Purchase_Order_Model, Particulars, Invoice
-
+from .form import RmlModelForm
+import xlrd
+import pandas as pd
+from pandas import ExcelWriter
+from pandas import ExcelFile
+import openpyxl
 
 def property1(request):
     if request.method == 'POST':
@@ -246,6 +251,71 @@ def new_vendor(request):
 def view_vendor(request):
     info = models.Vendor_Model.objects.all()
     return render(request, 'view_vendor.html', {'info': info})
+
+@login_required(login_url='/login')
+def view_rml(request):
+    if request.user.is_purchase:
+        user = request.user
+    if request.method == 'POST':
+        project_no = request.POST.get("project_no")
+        info = models.Rml_model.objects.all().filter(project_no=project_no)
+        return render(request, 'view_rml.html',{'info': info})
+    else:
+        bookform = RmlModelForm(request.GET or None)
+        return render(request, 'view_rml.html',{'bookform' : bookform})
+
+from django.db import transaction
+
+
+@login_required(login_url='/login')
+@transaction.atomic
+def upload_rml(request):
+    if request.user.is_purchase:
+        user = request.user
+    if request.method == 'GET':
+        bookform = RmlModelForm(request.GET or None)
+        return render(request, 'upload_rml.html',{'bookform' : bookform})
+    if request.method == 'POST':
+        project_no = request.POST.get("project_no")
+        attachment = request.FILES['attachment']
+        #raw_data = attachment.read()
+        project_no = Project_model.objects.get(pk=project_no)
+        #print("Project No:", project_no)
+        #print("Attachment encoding", raw_data)
+        wb_obj = openpyxl.load_workbook(attachment)
+        sheet = wb_obj.active
+        #print(sheet.max_row, sheet.max_column)
+        
+        for row in sheet.iter_rows(2, sheet.max_row):
+            if row[0].value != None :
+                #unit_price = 0
+                description = ""
+                quantity = 0
+                unit = ""
+                #if row[5].value != None :
+                    #unit_price = int(row[5].value)
+                if row[2].value !=None :
+                    description = str(row[2].value).strip()
+                if row[3].value !=None :
+                    quantity = int(row[3].value)
+                if row[4].value !=None :
+                    unit = str(row[4].value).strip()
+                rml_model = Rml_model(
+                project_no = project_no,
+                rml_no = int(row[0].value),
+                specification= str(row[1].value).strip() ,
+                description = description,
+                quantity = quantity,
+                unit = unit,
+                #unit_price = unit_price,
+                allocate = int(row[6].value),
+                available = int(row[6].value)
+                )
+                rml_model.save()    
+            else:
+                break
+        return render(request, 'view_rml.html')
+
 
 
 @login_required(login_url='/login')

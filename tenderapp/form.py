@@ -6,7 +6,7 @@ from django import forms
 from django import forms
 from django.forms import (formset_factory, modelformset_factory)
 
-from .models import (Purchase_Order_Model, Particulars)
+from .models import (Purchase_Order_Model, Particulars,Rml_model)
 
 from .models import (Invoice_Model, Invoice)
 
@@ -248,6 +248,24 @@ class PurchaseModelForm(forms.ModelForm):
                 'readonly': True
             }),
         }
+
+
+
+class RmlModelForm(forms.ModelForm):
+    class Meta:
+        model = Rml_model
+        fields = ('project_no','attachment',)
+        widgets = {
+            'project_no': forms.NumberInput(attrs={
+                'class': 'form-control round-form',
+                'placeholder': 'Enter Project No.'
+            }),
+            'attachment': forms.FileInput(attrs={
+                'class': 'form-control round-form',
+                'placeholder': 'Choose File'
+            }),
+        }
+
 
 
 ParticularsFormset = modelformset_factory(
