@@ -202,7 +202,7 @@ class PurchaseModelForm(forms.ModelForm):
                 'class': 'form-control round-form',
                 'placeholder': 'Choose Project No.'
             }),
-            'rml': forms.NumberInput(attrs={
+            'rml': forms.TextInput(attrs={
                 'class': 'form-control round-form',
                 'placeholder': 'Enter RML No here'
             }),
@@ -325,7 +325,7 @@ class InvoiceModelForm(forms.ModelForm):
                 'class': 'form-control round-form',
                 'placeholder': 'Enter project no. here'
             }),
-            'rml': forms.NumberInput(attrs={
+            'rml': forms.TextInput(attrs={
                 'class': 'form-control round-form',
                 'placeholder': 'Enter RML No. here'
             }),

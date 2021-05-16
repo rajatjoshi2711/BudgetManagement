@@ -94,7 +94,7 @@ class Vendor_Model(models.Model):
 
 
 class Project_model(models.Model):
-    project_no = models.IntegerField(default=0,primary_key=True)
+    project_no = models.CharField(max_length=40, default='', primary_key=True)
     name = models.CharField(max_length=100, default='')
     allocate = models.IntegerField(default=0)
     utilized = models.IntegerField(default=0)
@@ -114,7 +114,7 @@ class Rml_model(models.Model):
         ]
 
     project_no = models.ForeignKey(Project_model, on_delete=models.CASCADE)
-    rml_no = models.IntegerField(null=False)
+    rml_no = models.CharField(null=False, max_length=40)
     specification = models.CharField(max_length=100, null=False)
     description = models.CharField(max_length=100, null=True)
     quantity = models.IntegerField(null=False)
@@ -134,7 +134,7 @@ class Purchase_Order_Model(models.Model):
     vendor = models.ForeignKey(Vendor_Model, on_delete=models.CASCADE)
     invoice_for = models.CharField(max_length=255,default='')
     project = models.ForeignKey(Project_model, on_delete=models.CASCADE,related_name='project')
-    rml = models.IntegerField(default=0)
+    rml = models.CharField(null=False, max_length=40)
 
     sub_total = models.IntegerField(default=0)
     amount = models.IntegerField(default=0)
@@ -175,7 +175,7 @@ class Invoice_Model(models.Model):
     invoice_for = models.CharField(max_length=255, default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     vendor = models.ForeignKey(Vendor_Model, on_delete=models.CASCADE)
-    rml = models.IntegerField(default=0)
+    rml = models.CharField(null=False, max_length=40)
     total_amount = models.IntegerField(default=0)
     total_igst = models.IntegerField(default=0)
     total_sgst = models.IntegerField(default=0)
@@ -243,7 +243,7 @@ class Request_model(models.Model):
     date = models.DateTimeField(default=datetime.datetime.today().strftime('%Y-%m-%d'))
     
     status = models.CharField(max_length=100, default='Pending')
-    project_no = models.IntegerField(default=0)
+    project_no = models.CharField(max_length=40, default='')
     tds = models.IntegerField(default=0)
     tds_type = models.CharField(max_length=100, default='')
     adv_pay = models.IntegerField(default=0)

@@ -16,9 +16,9 @@ from django.views import generic
 from .models import Purchase_Order_Model, Particulars, Invoice
 from .form import RmlModelForm
 import xlrd
-import pandas as pd
-from pandas import ExcelWriter
-from pandas import ExcelFile
+#import pandas as pd
+#from pandas import ExcelWriter
+#from pandas import ExcelFile
 import openpyxl
 
 def property1(request):
@@ -456,6 +456,7 @@ def purchase_order(request):
         # selected_project_no= get_object_or_404(Budget_model, pk=request.POST.get('project_no'))
         purchaseform = PurchaseModelForm(request.POST,request.FILES)
         formset = ParticularsFormset(request.POST,request.FILES)
+        print(purchaseform)
         if purchaseform.is_valid() and formset.is_valid():
             rml_no = request.POST.get("rml")
             rml_available_budget = models.Rml_model.objects.all().filter(rml_no=rml_no)
